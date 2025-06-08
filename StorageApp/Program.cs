@@ -1,8 +1,20 @@
 ﻿using StorageApp;
 
-Console.WriteLine("Введите количество палет: ");
-var palletsCount = int.Parse(Console.ReadLine());
-var pallets = StorageGenerator.GeneratePallets(palletsCount);
+while (true)
+{
+    try
+    {
+        Console.WriteLine("Введите количество палет: ");
+        var palletsCount = int.Parse(Console.ReadLine());
+        var pallets = StorageGenerator.GeneratePallets(palletsCount);
+        StoragePrinter.PrintGroupedPallets(pallets);
+        StoragePrinter.PrintTopLongTermPallets(pallets);
+        break;
+    }
 
-StoragePrinter.PrintGroupedPallets(pallets);
-StoragePrinter.PrintTopLongTermPallets(pallets);
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Произошла ошибка: {ex.Message}. Попробуйте еще раз");
+    }
+}
+
